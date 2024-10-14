@@ -48,6 +48,7 @@
             clm_md5 = new DataGridViewTextBoxColumn();
             cml_finsh = new DataGridViewCheckBoxColumn();
             clm_fullName = new DataGridViewTextBoxColumn();
+            tsmi_help = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -60,7 +61,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { 设置ToolStripMenuItem, tsmi_about });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { 设置ToolStripMenuItem, tsmi_about, tsmi_help });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1740, 32);
@@ -86,6 +87,7 @@
             tsmi_exit.Name = "tsmi_exit";
             tsmi_exit.Size = new Size(270, 34);
             tsmi_exit.Text = "退出";
+            tsmi_exit.Click += tsmi_exit_Click;
             // 
             // tsmi_about
             // 
@@ -234,6 +236,13 @@
             clm_fullName.Visible = false;
             clm_fullName.Width = 150;
             // 
+            // tsmi_help
+            // 
+            tsmi_help.Name = "tsmi_help";
+            tsmi_help.Size = new Size(62, 28);
+            tsmi_help.Text = "帮助";
+            tsmi_help.Click += tsmi_help_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
@@ -280,5 +289,6 @@
         private DataGridViewTextBoxColumn clm_md5;
         private DataGridViewCheckBoxColumn cml_finsh;
         private DataGridViewTextBoxColumn clm_fullName;
+        private ToolStripMenuItem tsmi_help;
     }
 }

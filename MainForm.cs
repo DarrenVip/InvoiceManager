@@ -38,6 +38,14 @@ namespace InvoiceManager
             {
                 config = new Config();
                 config.BasePath = "D:\\SynologyDrive\\Premin\\发票相关";
+                ConfigForm configForm = new ConfigForm();
+                DialogResult dialogResult = configForm.ShowDialog();
+                if (dialogResult == DialogResult.OK)
+                {
+
+                    MessageBox.Show("设置完成，重新打开软件进入");
+                    Application.Exit();
+                }
             }
 
             this.AddFolder(config.BasePath);
@@ -280,6 +288,17 @@ namespace InvoiceManager
             sb.Append(Environment.NewLine);
             sb.Append("网站：").Append("http://www.darren.host");
             MessageBox.Show(sb.ToString());
+        }
+
+        private void tsmi_exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tsmi_help_Click(object sender, EventArgs e)
+        {
+            HelpForm helpForm = new HelpForm();
+            helpForm.ShowDialog();
         }
     }
 }

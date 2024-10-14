@@ -38,7 +38,7 @@
             groupBox1 = new GroupBox();
             textBox2 = new TextBox();
             groupBox2 = new GroupBox();
-            linkLabel1 = new LinkLabel();
+            richTextBox1 = new RichTextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -71,7 +71,7 @@
             // 
             // btn_ok
             // 
-            btn_ok.Location = new Point(579, 616);
+            btn_ok.Location = new Point(579, 521);
             btn_ok.Name = "btn_ok";
             btn_ok.Size = new Size(163, 53);
             btn_ok.TabIndex = 4;
@@ -111,30 +111,27 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(linkLabel1);
+            groupBox2.Controls.Add(richTextBox1);
             groupBox2.Location = new Point(43, 307);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(699, 293);
+            groupBox2.Size = new Size(699, 177);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "ORC 密匙获取";
             // 
-            // linkLabel1
+            // richTextBox1
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(33, 119);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(319, 24);
-            linkLabel1.TabIndex = 0;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "【阿里官方】增值税发票OCR文字识别";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            richTextBox1.Location = new Point(6, 46);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(687, 125);
+            richTextBox1.TabIndex = 0;
+            richTextBox1.Text = "【阿里官方】增值税发票OCR文字识别\n\n  https://market.aliyun.com/apimarket/detail/cmapi027758";
             // 
             // ConfigForm
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 681);
+            ClientSize = new Size(800, 614);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(btn_ok);
@@ -145,7 +142,6 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -159,6 +155,6 @@
         private GroupBox groupBox1;
         private TextBox textBox2;
         private GroupBox groupBox2;
-        private LinkLabel linkLabel1;
+        private RichTextBox richTextBox1;
     }
 }
