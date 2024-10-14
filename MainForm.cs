@@ -132,31 +132,29 @@ namespace InvoiceManager
             foreach (FileInfo file in files)
             {
                 string md5 = GetFileMD5(file.FullName);
-                if (!file.Extension.ToLower().Equals("cvs"))
+                string jsonFile = Path.Combine(getWorkspase(), md5 + ".json");
+                string amount = file.Name.Split("_")[0];
+                double number = -1;
+                string dateTime = string.Empty;
+                if (File.Exists(jsonFile))
                 {
-                    string jsonFile = Path.Combine(getWorkspase(), md5 + ".json");
-                    string amount = file.Name.Split("_")[0];
-                    double number = -1;
-                    string dateTime = string.Empty;
-                    if (File.Exists(jsonFile))
+                    Hashtable hashtable = getFileData(md5);
+                    if (hashtable != null)
                     {
-                        Hashtable hashtable = getFileData(md5);
-                        if (hashtable != null)
-                        {
-                            amount = "" + hashtable["发票金额"];
-                            dateTime = "" + hashtable["开票日期"];
-                            number = Double.Parse(amount);
-                        }
+                        amount = "" + hashtable["发票金额"];
+                        dateTime = "" + hashtable["开票日期"];
+                        number = Double.Parse(amount);
                     }
-                    else if (Double.TryParse(amount, out number))
-                    {
-                        total += number;
-                        count++;
-                    }
-
-
-                    dataGridView2.Rows.Add(new string[] { file.Name, number > 0 ? amount : "", dateTime, md5, keyValuePairs.ContainsKey(md5).ToString(), file.FullName });
                 }
+                else if (Double.TryParse(amount, out number))
+                {
+                    total += number;
+                    count++;
+                }
+
+
+                dataGridView2.Rows.Add(new string[] { file.Name, number > 0 ? amount : "", dateTime, md5, keyValuePairs.ContainsKey(md5).ToString(), file.FullName });
+
 
             }
 
