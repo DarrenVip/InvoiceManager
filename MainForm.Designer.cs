@@ -34,10 +34,11 @@
             tsmi_setting = new ToolStripMenuItem();
             tsmi_exit = new ToolStripMenuItem();
             tsmi_about = new ToolStripMenuItem();
+            tsmi_help = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
             treeView1 = new TreeView();
             groupBox1 = new GroupBox();
-            button1 = new Button();
+            btn_Rename = new Button();
             btn_OK = new Button();
             label2 = new Label();
             label1 = new Label();
@@ -48,7 +49,7 @@
             clm_md5 = new DataGridViewTextBoxColumn();
             cml_finsh = new DataGridViewCheckBoxColumn();
             clm_fullName = new DataGridViewTextBoxColumn();
-            tsmi_help = new ToolStripMenuItem();
+            btn_Exp = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -78,14 +79,14 @@
             // tsmi_setting
             // 
             tsmi_setting.Name = "tsmi_setting";
-            tsmi_setting.Size = new Size(270, 34);
+            tsmi_setting.Size = new Size(146, 34);
             tsmi_setting.Text = "设置";
             tsmi_setting.Click += tsmi_setting_Click;
             // 
             // tsmi_exit
             // 
             tsmi_exit.Name = "tsmi_exit";
-            tsmi_exit.Size = new Size(270, 34);
+            tsmi_exit.Size = new Size(146, 34);
             tsmi_exit.Text = "退出";
             tsmi_exit.Click += tsmi_exit_Click;
             // 
@@ -95,6 +96,13 @@
             tsmi_about.Size = new Size(62, 28);
             tsmi_about.Text = "关于";
             tsmi_about.Click += tsmi_about_Click;
+            // 
+            // tsmi_help
+            // 
+            tsmi_help.Name = "tsmi_help";
+            tsmi_help.Size = new Size(62, 28);
+            tsmi_help.Text = "帮助";
+            tsmi_help.Click += tsmi_help_Click;
             // 
             // splitContainer1
             // 
@@ -126,7 +134,8 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btn_Exp);
+            groupBox1.Controls.Add(btn_Rename);
             groupBox1.Controls.Add(btn_OK);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
@@ -137,25 +146,24 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "操作";
             // 
-            // button1
+            // btn_Rename
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(860, 73);
-            button1.Name = "button1";
-            button1.Size = new Size(183, 64);
-            button1.TabIndex = 3;
-            button1.Text = "重命名文件";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btn_Rename.BackColor = SystemColors.Highlight;
+            btn_Rename.ForeColor = SystemColors.ButtonHighlight;
+            btn_Rename.Location = new Point(790, 73);
+            btn_Rename.Name = "btn_Rename";
+            btn_Rename.Size = new Size(150, 64);
+            btn_Rename.TabIndex = 3;
+            btn_Rename.Text = "重命名文件";
+            btn_Rename.UseVisualStyleBackColor = false;
             // 
             // btn_OK
             // 
             btn_OK.BackColor = SystemColors.Highlight;
             btn_OK.ForeColor = SystemColors.ButtonHighlight;
-            btn_OK.Location = new Point(1049, 71);
+            btn_OK.Location = new Point(946, 73);
             btn_OK.Name = "btn_OK";
-            btn_OK.Size = new Size(183, 64);
+            btn_OK.Size = new Size(150, 64);
             btn_OK.TabIndex = 2;
             btn_OK.Text = "识别发票";
             btn_OK.UseVisualStyleBackColor = false;
@@ -236,12 +244,17 @@
             clm_fullName.Visible = false;
             clm_fullName.Width = 150;
             // 
-            // tsmi_help
+            // btn_Exp
             // 
-            tsmi_help.Name = "tsmi_help";
-            tsmi_help.Size = new Size(62, 28);
-            tsmi_help.Text = "帮助";
-            tsmi_help.Click += tsmi_help_Click;
+            btn_Exp.BackColor = SystemColors.Highlight;
+            btn_Exp.ForeColor = SystemColors.ButtonHighlight;
+            btn_Exp.Location = new Point(1102, 73);
+            btn_Exp.Name = "btn_Exp";
+            btn_Exp.Size = new Size(150, 64);
+            btn_Exp.TabIndex = 4;
+            btn_Exp.Text = "导出打印";
+            btn_Exp.UseVisualStyleBackColor = false;
+            btn_Exp.Click += btn_Exp_Click;
             // 
             // MainForm
             // 
@@ -282,7 +295,7 @@
         private Label label2;
         private Label label1;
         private Button btn_OK;
-        private Button button1;
+        private Button btn_Rename;
         private DataGridViewTextBoxColumn clm_file;
         private DataGridViewTextBoxColumn clm_amount;
         private DataGridViewTextBoxColumn clm_day;
@@ -290,5 +303,6 @@
         private DataGridViewCheckBoxColumn cml_finsh;
         private DataGridViewTextBoxColumn clm_fullName;
         private ToolStripMenuItem tsmi_help;
+        private Button btn_Exp;
     }
 }

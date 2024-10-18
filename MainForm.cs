@@ -6,6 +6,11 @@ using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text;
 using System.Text.Json.Nodes;
+using System.Drawing.Imaging;
+using PdfiumViewer;
+using Word = Microsoft.Office;
+using NPOI.XWPF.UserModel;
+using System.Reflection.Metadata;
 
 namespace InvoiceManager
 {
@@ -298,5 +303,81 @@ namespace InvoiceManager
             HelpForm helpForm = new HelpForm();
             helpForm.ShowDialog();
         }
+
+        private void btn_Exp_Click(object sender, EventArgs e)
+        {
+            DataGridViewRowCollection selectedRowCollection = this.dataGridView2.Rows;
+            
+
+            foreach (DataGridViewRow row in selectedRowCollection)
+            {
+                if (row.IsNewRow) {
+                    continue;
+                }
+                string  filePath = row.Cells[row.Cells.Count - 1].Value.ToString();
+                string  fileDir = Path.Combine(Directory.GetCurrentDirectory(), "temp");
+                if (Directory.Exists(filePath)){
+                    Directory.Delete(fileDir, true);
+                }
+                Directory.CreateDirectory(fileDir);
+                ConvertPdfToImages(filePath, Path.Combine(Directory.GetCurrentDirectory(), "temp"), ""+row.Index);
+            }
+
+            try
+            {
+                string  path = Path.Combine(Directory.GetCurrentDirectory(), DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")+".doc");
+                this.createWord(path);
+                MessageBox.Show("生成文件成功:"+ path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("生成文件报错:"+ex.Message);
+            }
+            
+        }
+
+
+        public void createWord(string path) {
+
+            using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write))
+            {
+                XWPFDocument doc = new XWPFDocument();
+
+                // 确定要插入图片的位置
+                XWPFParagraph paragraph = doc.CreateParagraph();
+               
+                XWPFRun run = paragraph.CreateRun();
+
+                string fileDir = Path.Combine(Directory.GetCurrentDirectory(), "temp");
+
+                foreach (string item in Directory.GetFiles(fileDir))
+                {
+                    using (FileStream stream = new FileStream(item,FileMode.Open)) {
+                        run.AddPicture(stream, (int)PictureType.JPEG, item, (int)(420.0 * 9525), (int)(270.0 * 9525));
+                    }
+                }
+
+            
+                doc.Write(fileStream);
+
+          
+            }
+
+        }
+
+        public static void ConvertPdfToImages(string pdfFilePath, string outputFolder,string fileName)
+        {
+            using (var document = PdfDocument.Load(pdfFilePath))
+            {
+                for (int pageIndex = 0; pageIndex < document.PageCount; pageIndex++)
+                {
+                    var pageImage = document.Render(pageIndex, 1200, 1200, true); // 300 dpi
+                    string imageOutputPath = Path.Combine(outputFolder, $"{fileName}_page_{pageIndex + 1}.png");
+                    pageImage.Save(imageOutputPath, ImageFormat.Jpeg);
+                }
+            }
+        }
+
     }
+
 }
